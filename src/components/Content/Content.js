@@ -210,7 +210,7 @@ const NewsContent = () => {
                     }}
                   >
                     {item?.description}{" "}
-                    {ItemCounter(item?.id, item?.name, item?.price)}
+                    {/* {ItemCounter(item?.id, item?.name, item?.price)} */}
                   </p>
                   <div style={{ display: "flex" }}>
                     <p
