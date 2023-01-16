@@ -45,7 +45,17 @@ const NavQuana = () => {
               </p>
             </div>
           </Button>
-          <p style={{ color: "white", marginTop: -10, marginLeft: -16 }}>
+          <p
+            style={{
+              color: "white",
+              marginTop: -10,
+              marginLeft: -16,
+              marginBottom: 30,
+              color: "red",
+              fontWeight: "bold",
+              fontSize: 15,
+            }}
+          >
             Review Orders
           </p>
         </div>

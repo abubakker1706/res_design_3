@@ -8,6 +8,7 @@ import { Values } from "../../Context/ContextTab";
 import ApiCaller from "../../ApiCaller/ApiCaller";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import Button from "@mui/material/Button";
+import { CompressOutlined } from "@mui/icons-material";
 // import { listClasses } from "@mui/material";
 
 const NewsContent = () => {
@@ -27,11 +28,20 @@ const NewsContent = () => {
   };
 
   const OrderReceiver = (id, name, price) => {
-    // console.log("newOrder is", id, name, price);
     let OrderArray = [...Orders, { id, name, price }];
-    // console.log("Total Order is", OrderArray);
     setOrders(OrderArray);
   };
+
+  const OrderReducer = (id, name, price) => {
+    console.log("blah");
+    const itemToBeRemoved = { id: id, name: name, price: price };
+    let apps = Orders;
+    const findIndex = apps.findIndex((a) => a.id === itemToBeRemoved.id);
+    findIndex !== -1 && apps.splice(findIndex, 1);
+    setOrders([...apps]);
+  };
+
+  console.log("Orders are", Orders);
 
   const ItemCounter = (id, name, price) => {
     let count = 0;
@@ -199,7 +209,8 @@ const NewsContent = () => {
                       marginTop: -10,
                     }}
                   >
-                    {item?.description}
+                    {item?.description}{" "}
+                    {ItemCounter(item?.id, item?.name, item?.price)}
                   </p>
                   <div style={{ display: "flex" }}>
                     <p
@@ -230,37 +241,71 @@ const NewsContent = () => {
                       </p>
                     </p>
 
-                    <div
-                      style={{
-                        height: 20,
-                        // width: 80,
-                        backgroundColor:
-                          ItemCounter(item?.id, item?.name, item?.price) !== 0
-                            ? "green"
-                            : "grey",
-                        borderRadius: 5,
-                        marginTop: 15,
-                        marginLeft: 150,
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        OrderReceiver(item?.id, item?.name, item?.price);
-                      }}
-                    >
+                    <div style={{ marginLeft: 120, display: "flex" }}>
                       <p
                         style={{
-                          marginTop: -0.5,
                           color: "white",
-                          fontWeight: "bold",
-                          textTransform: "none",
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          // marginLeft: 5,
+                          marginRight: 10,
+                          fontSize: 20,
+                        }}
+                        onClick={() => {
+                          OrderReceiver(item?.id, item?.name, item?.price);
                         }}
                       >
-                        Order {ItemCounter(item?.id, item?.name, item?.price)}
+                        +
                       </p>
+                      <div
+                        style={{
+                          height: 20,
+                          // width: 80,
+                          backgroundColor:
+                            ItemCounter(item?.id, item?.name, item?.price) !== 0
+                              ? "green"
+                              : "grey",
+                          borderRadius: 5,
+                          marginTop: 15,
+
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          OrderReceiver(item?.id, item?.name, item?.price);
+                        }}
+                      >
+                        {/* <p style={{ color: "white" }}>-</p> */}
+                        <p
+                          style={{
+                            marginTop: -0.5,
+                            color: "white",
+                            fontWeight: "bold",
+                            textTransform: "none",
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            // marginLeft: 5,
+                          }}
+                        >
+                          Order {ItemCounter(item?.id, item?.name, item?.price)}
+                        </p>
+                      </div>
+                      <div
+                        onClick={() => {
+                          OrderReducer(item?.id, item?.name, item?.price);
+                        }}
+                      >
+                        <p
+                          style={{
+                            color: "white",
+                            marginLeft: 10,
+                            fontSize: 20,
+                          }}
+                        >
+                          -
+                        </p>
+                      </div>
                     </div>
+
+                    {/* <p style={{ color: "white" }}>
+                      {ItemCounter(item?.id, item?.name, item?.price)}
+                    </p> */}
                   </div>
                 </div>
               </div>
