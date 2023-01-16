@@ -1,0 +1,35 @@
+.nav {
+  height: 71px;
+  box-shadow: 0px 1px 8px #888888;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-left: 20px;
+}
+
+.menu {
+  flex: 0.5;
+  /* display: flex; */
+  margin-left: 20px;
+  margin-top: 25px;
+}
+
+.topbar {
+  height: 71px;
+  display: flex;
+  align-items: center;
+  margin-left: 120px;
+}
+
+.mode {
+  flex: 0.5;
+  justify-content: flex-end;
+  display: flex;
+  margin-right: 10px;
+}
+
+.lang {
+  display: flex;
+  justify-content: center;
+}
