@@ -104,6 +104,7 @@ const NewsContent = () => {
                     paddingLeft: 10,
                     paddingRight: 10,
                     fontFamily: "Trirong",
+                    // fontSize: 50,
                   }}
                 >
                   {item?.t}
@@ -182,8 +183,8 @@ const NewsContent = () => {
                     />
                     <p
                       style={{
-                        fontSize: 18,
-                        color: Dark ? "white" : "black",
+                        fontSize: 25,
+                        color: Dark ? "#E2E4E6" : "black",
                         marginLeft: 8,
                         marginTop: -2,
                         fontFamily: "Inter",
@@ -204,7 +205,7 @@ const NewsContent = () => {
                   </div>
                   <p
                     style={{
-                      color: Dark ? "#e2e5de" : "#808080",
+                      color: Dark ? "#c9c8c4" : "#808080",
                       // marginLeft: 10,
                       marginTop: -10,
                     }}
@@ -245,7 +246,7 @@ const NewsContent = () => {
                       <div
                         style={{
                           height: 20,
-                          // width: 80,
+                          width: 30,
                           backgroundColor: "grey",
                           borderRadius: 5,
                           marginTop: 15,
@@ -263,9 +264,11 @@ const NewsContent = () => {
                             color: "white",
                             fontWeight: "bold",
                             textTransform: "none",
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            // marginLeft: 5,
+                            // paddingLeft: 5,
+                            // paddingRight: 5,
+
+                            marginLeft: 10,
+                            // marginTop: 5,
                           }}
                         >
                           +
@@ -309,7 +312,7 @@ const NewsContent = () => {
                       <div
                         style={{
                           height: 20,
-                          // width: 80,
+                          width: 30,
                           backgroundColor: "grey",
                           borderRadius: 5,
                           marginTop: 15,
@@ -327,9 +330,11 @@ const NewsContent = () => {
                             color: "white",
                             fontWeight: "bold",
                             textTransform: "none",
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            // marginLeft: 5,
+                            // paddingLeft: 5,
+                            // paddingRight: 5,
+
+                            marginLeft: 10,
+                            // marginTop: 5,
                           }}
                         >
                           -
