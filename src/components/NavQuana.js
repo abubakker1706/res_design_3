@@ -11,12 +11,18 @@ const NavQuana = () => {
   const { Orders, setOrders } = React.useContext(Values);
   const [ModalOpen, setModalOpen] = useState(false);
 
-  console.log(Orders);
-
-  const OrderPlaced = () => {
-    setModalOpen(false);
-    setOrders([]);
-    alert("Order Placed Sucessfully");
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: 10,
+      borderWidth: 5,
+      borderColor: "orange",
+    },
   };
 
   // const ids = Orders.map((o) => o.id);
@@ -38,7 +44,7 @@ const NavQuana = () => {
     }, {})
   );
 
-  console.log(answer);
+  // console.log(answer);
 
   let price = 0;
 
@@ -46,7 +52,13 @@ const NavQuana = () => {
     price = price + item.price * item.count;
   });
 
-  console.log(price);
+  const OrderPlaced = () => {
+    setModalOpen(false);
+    setOrders([]);
+    alert(`Order Placed of INR ${price}/- Sucessfully !`);
+  };
+
+  // console.log(price);
   return (
     <div>
       <div
@@ -69,18 +81,18 @@ const NavQuana = () => {
               style={{
                 height: 20,
                 width: 20,
-                backgroundColor: "red",
+                backgroundColor: "#c53444",
                 borderRadius: 10,
-                marginTop: -15,
+                marginTop: -10,
                 marginLeft: -10,
               }}
             >
-              <p style={{ marginTop: -2, color: "white", fontWeight: "bold" }}>
+              <p style={{ marginTop: -1, color: "white", fontWeight: "bold" }}>
                 {Orders.length}
               </p>
             </div>
           </Button>
-          <p
+          {/* <p
             style={{
               color: "white",
               marginTop: -10,
@@ -92,7 +104,7 @@ const NavQuana = () => {
             }}
           >
             Review Orders
-          </p>
+          </p> */}
         </div>
 
         <div style={{ cursor: "pointer" }} className="topbar">
@@ -133,19 +145,57 @@ const NavQuana = () => {
         onRequestClose={() => {
           setModalOpen(false);
         }}
-        // style={{ width: 250, height: 100 }}
+        style={customStyles}
         contentLabel="Example Modal"
       >
-        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
-        <button
+        <div
           onClick={() => {
             setModalOpen(false);
           }}
+          style={{
+            marginTop: -30,
+            marginLeft: 350,
+            cursor: "pointer",
+          }}
         >
-          close
-        </button>
+          <p style={{ color: "red" }}>X</p>
+        </div>
 
-        {answer.map((item, index) => {
+        <p
+          style={{
+            color: "red",
+            fontWeight: "bold",
+            marginLeft: 100,
+            textDecorationLine: "underline",
+          }}
+        >
+          Orders Summary
+        </p>
+
+        <div style={{ marginLeft: 30 }}>
+          <table>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th style={{ marginLeft: 10 }}> </th>
+              <th style={{ marginLeft: 10 }}>Price</th>
+            </tr>
+            {answer.map((item, key) => {
+              return (
+                <tr key={key}>
+                  <td>{key + 1}</td>
+                  <td>{item.name}</td>
+                  <td>
+                    {item?.price}X{item?.count}=
+                  </td>
+                  <td>{item?.price * item?.count}/-</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+
+        {/* {answer.map((item, index) => {
           return (
             <div style={{ display: "flex", marginLeft: 10 }}>
               <p style={{ color: "black" }}>
@@ -155,28 +205,50 @@ const NavQuana = () => {
                 {item?.price}X{item?.count}=
               </p>
               <p style={{ color: "black", marginLeft: 10 }}>
-                INR {item?.price * item?.count}
+                {item?.price * item?.count}/-
               </p>
             </div>
           );
-        })}
+        })} */}
+        {price !== 0 ? (
+          <p style={{ marginLeft: 110, textDecorationLine: "underline" }}>
+            Total INR {price}/-
+          </p>
+        ) : (
+          <p style={{ marginLeft: 70 }}>Please Add Item from Menu !</p>
+        )}
 
-        <p style={{ marginLeft: 60 }}>Total INR{price}/-</p>
-
-        <div
-          style={{
-            height: 40,
-            backgroundColor: "orange",
-            borderRadius: 5,
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-            // flex: 1,
-          }}
-          onClick={OrderPlaced}
-        >
-          <p style={{ color: "black" }}>Confirm Order</p>
-        </div>
+        {price !== 0 ? (
+          <div
+            style={{
+              height: 40,
+              backgroundColor: "orange",
+              borderRadius: 5,
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+              // flex: 1,
+            }}
+            onClick={OrderPlaced}
+          >
+            <p style={{ color: "black" }}>Confirm Order</p>
+          </div>
+        ) : (
+          <div
+            style={{
+              height: 40,
+              backgroundColor: "#d0d0d0",
+              borderRadius: 5,
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+              // flex: 1,
+            }}
+            // onClick={OrderPlaced}
+          >
+            <p style={{ color: "white" }}>Confirm Order</p>
+          </div>
+        )}
       </Modal>
     </div>
   );

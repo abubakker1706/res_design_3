@@ -33,3 +33,17 @@
   display: flex;
   justify-content: center;
 }
+
+table {
+  border: 2px solid black;
+  width: 300px;
+  /* height: 200px; */
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+td {
+  text-align: center;
+}

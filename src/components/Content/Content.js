@@ -23,7 +23,7 @@ const NewsContent = () => {
 
   const caller = (index) => {
     setList(menu_type[index]?.list);
-    console.log(menu_type[index].list);
+    // console.log(menu_type[index].list);
     setIndex(index);
   };
 
@@ -33,7 +33,7 @@ const NewsContent = () => {
   };
 
   const OrderReducer = (id, name, price) => {
-    console.log("blah");
+    // console.log("blah");
     const itemToBeRemoved = { id: id, name: name, price: price };
     let apps = Orders;
     const findIndex = apps.findIndex((a) => a.id === itemToBeRemoved.id);
@@ -41,7 +41,7 @@ const NewsContent = () => {
     setOrders([...apps]);
   };
 
-  console.log("Orders are", Orders);
+  // console.log("Orders are", Orders);
 
   const ItemCounter = (id, name, price) => {
     let count = 0;
@@ -56,7 +56,7 @@ const NewsContent = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get("id");
-    console.log(id);
+    // console.log(id);
     axios
       .get(`https://www.thequana.com/apimobile/menumaster?r=${id}`)
       .then((Response) => {
@@ -241,22 +241,41 @@ const NewsContent = () => {
                       </p>
                     </p>
 
-                    <div style={{ marginLeft: 120, display: "flex" }}>
-                      <p
+                    <div style={{ marginLeft: 160, display: "flex" }}>
+                      <div
                         style={{
-                          color: "white",
-                          marginRight: 10,
-                          fontSize: 20,
+                          height: 20,
+                          // width: 80,
+                          backgroundColor: "grey",
+                          borderRadius: 5,
+                          marginTop: 15,
+
+                          cursor: "pointer",
                         }}
                         onClick={() => {
                           OrderReceiver(item?.id, item?.name, item?.price);
                         }}
                       >
-                        +
-                      </p>
+                        {/* <p style={{ color: "white" }}>-</p> */}
+                        <p
+                          style={{
+                            marginTop: -0.5,
+                            color: "white",
+                            fontWeight: "bold",
+                            textTransform: "none",
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            // marginLeft: 5,
+                          }}
+                        >
+                          +
+                        </p>
+                      </div>
                       <div
                         style={{
                           height: 20,
+                          marginLeft: 5,
+                          marginRight: 5,
                           // width: 80,
                           backgroundColor:
                             ItemCounter(item?.id, item?.name, item?.price) !== 0
@@ -283,10 +302,41 @@ const NewsContent = () => {
                             // marginLeft: 5,
                           }}
                         >
-                          Order {ItemCounter(item?.id, item?.name, item?.price)}
+                          {ItemCounter(item?.id, item?.name, item?.price)}
                         </p>
                       </div>
+
                       <div
+                        style={{
+                          height: 20,
+                          // width: 80,
+                          backgroundColor: "grey",
+                          borderRadius: 5,
+                          marginTop: 15,
+
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          OrderReducer(item?.id, item?.name, item?.price);
+                        }}
+                      >
+                        {/* <p style={{ color: "white" }}>-</p> */}
+                        <p
+                          style={{
+                            marginTop: -0.5,
+                            color: "white",
+                            fontWeight: "bold",
+                            textTransform: "none",
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            // marginLeft: 5,
+                          }}
+                        >
+                          -
+                        </p>
+                      </div>
+
+                      {/* <div
                         onClick={() => {
                           OrderReducer(item?.id, item?.name, item?.price);
                         }}
@@ -296,11 +346,14 @@ const NewsContent = () => {
                             color: "white",
                             marginLeft: 10,
                             fontSize: 20,
+                            // marginTop: -0.1,
+                            // marginBottom: 20,
+                            marginTop: 12,
                           }}
                         >
-                          -
+                          __
                         </p>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* <p style={{ color: "white" }}>
