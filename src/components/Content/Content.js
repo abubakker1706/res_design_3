@@ -23,7 +23,7 @@ const NewsContent = () => {
 
   const caller = (index) => {
     setList(menu_type[index]?.list);
-    // console.log(menu_type[index].list);
+    console.log(menu_type);
     setIndex(index);
   };
 
@@ -68,31 +68,47 @@ const NewsContent = () => {
         setImgLink(Response.data?.data?.arr_links?.menuitem_image);
         setSpcLink(Response.data?.data?.arr_links?.menuitem_icons);
         // caller(0);
+        // setList(menu_type[0]?.list);
+        // caller(0);
       });
+    // .then(() => {
+    //   caller(0);
+    // });
   }, []);
+
+  useEffect(() => {
+    caller(0);
+  }, [menu_type]);
+
   // caller(0);
   return (
     <div style={{ backgroundColor: Dark ? "#353535" : "white" }}>
-      {/* <div style={{ position: "fixed" }}> */}
-      <div s>
-        {/* <div style={{ marginTop: -40 }}> */}
-        {/* <div> */}
+      {/* <div> */}
+      <Container
+        style={{
+          // marginTop: 20,
+
+          // width: 430,
+          // borderColor: "black",
+          // backgroundColor: Dark ? "black" : "white",
+          // borderRadius: 5,
+          // border: "0.5px solid #888888",
+          // boxShadow: "0px 1px 8px #888888",
+          flex: 1,
+        }}
+      >
         <ScrollMenu>
           {menu_type.map((item, index) => (
             <div
               className="wrap"
               style={{
-                // backgroundColor: Index == index ? "black" : "grey",
                 backgroundColor: "black",
                 textDecorationLine: "underline",
-                // position: "fixed",
-                // textDecorationColor: Index == index ? "orange" : "grey",
-                // textDecorationThickness: 2,
-                // borderbottom-color: "coral",
-                borderBottomColor: Index == index ? "orange" : "grey",
-
+                borderBottomColor: Index == index ? "orange" : "#d0d0d0",
+                borderWidth: 10,
                 cursor: "pointer",
               }}
+              // onClick={caller(0)}
               onClick={() => {
                 caller(index);
               }}
@@ -100,11 +116,12 @@ const NewsContent = () => {
               <div>
                 <p
                   style={{
-                    color: Index == index ? "orange" : "grey",
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                    fontFamily: "Trirong",
-                    // fontSize: 50,
+                    color: Index == index ? "orange" : "#d0d0d0",
+                    paddingLeft: 5,
+                    paddingRight: 5,
+                    fontWeight: "bold",
+                    // fontFamily: "Trirong",
+                    fontSize: 17,
                   }}
                 >
                   {item?.t}
@@ -114,9 +131,10 @@ const NewsContent = () => {
             </div>
           ))}
         </ScrollMenu>
-      </div>
+      </Container>
+      {/* </div> */}
 
-      {List.length == 0 ? (
+      {List?.length == 0 ? (
         <div
           style={{
             flex: 1,
@@ -170,6 +188,7 @@ const NewsContent = () => {
                       display: "flex",
                       flexDirection: "row",
                       flex: 1,
+                      // backgroundColor: "pink",
                     }}
                   >
                     <div
@@ -192,16 +211,25 @@ const NewsContent = () => {
                     >
                       {item?.name}
                     </p>
-                    {/* <p>{`${SpcLink}spiceid${item?.spiceid}.png`}</p> */}
-                    <img
-                      src={`${SpcLink}/spiceid${item?.spiceid}.png`}
-                      // alt="content Image"
+                    <div
                       style={{
-                        width: 30,
-                        height: 30,
-                        marginLeft: 50,
+                        display: "flex",
+                        // justifyContent: "flex-end",
+                        position: "absolute",
+                        marginLeft: 290,
+                        // right: 1,
                       }}
-                    />
+                    >
+                      <img
+                        src={`${SpcLink}/spiceid${item?.spiceid}.png`}
+                        style={{
+                          width: 30,
+                          height: 30,
+                          // marginLeft: 150,
+                          alignItems: "flex-end",
+                        }}
+                      />
+                    </div>
                   </div>
                   <p
                     style={{
@@ -214,14 +242,14 @@ const NewsContent = () => {
                     {/* {ItemCounter(item?.id, item?.name, item?.price)} */}
                   </p>
                   <div style={{ display: "flex" }}>
-                    <p
+                    {/* <p
                       style={{
                         color: Dark ? "white" : "black",
                         marginLeft: 10,
                       }}
                     >
                       {item?.ingredients}
-                    </p>
+                    </p> */}
                     <p
                       style={{
                         color: "grey",
@@ -235,7 +263,7 @@ const NewsContent = () => {
                         style={{
                           marginTop: -0.5,
                           marginLeft: 2,
-                          color: "orange",
+                          color: "#f17728",
                         }}
                       >
                         {item?.price}/-
@@ -254,24 +282,19 @@ const NewsContent = () => {
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          OrderReceiver(item?.id, item?.name, item?.price);
+                          OrderReducer(item?.id, item?.name, item?.price);
                         }}
                       >
-                        {/* <p style={{ color: "white" }}>-</p> */}
                         <p
                           style={{
                             marginTop: -0.5,
                             color: "white",
                             fontWeight: "bold",
                             textTransform: "none",
-                            // paddingLeft: 5,
-                            // paddingRight: 5,
-
                             marginLeft: 10,
-                            // marginTop: 5,
                           }}
                         >
-                          +
+                          -
                         </p>
                       </div>
                       <div
@@ -320,50 +343,22 @@ const NewsContent = () => {
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          OrderReducer(item?.id, item?.name, item?.price);
+                          OrderReceiver(item?.id, item?.name, item?.price);
                         }}
                       >
-                        {/* <p style={{ color: "white" }}>-</p> */}
                         <p
                           style={{
                             marginTop: -0.5,
                             color: "white",
                             fontWeight: "bold",
                             textTransform: "none",
-                            // paddingLeft: 5,
-                            // paddingRight: 5,
-
                             marginLeft: 10,
-                            // marginTop: 5,
                           }}
                         >
-                          -
+                          +
                         </p>
                       </div>
-
-                      {/* <div
-                        onClick={() => {
-                          OrderReducer(item?.id, item?.name, item?.price);
-                        }}
-                      >
-                        <p
-                          style={{
-                            color: "white",
-                            marginLeft: 10,
-                            fontSize: 20,
-                            // marginTop: -0.1,
-                            // marginBottom: 20,
-                            marginTop: 12,
-                          }}
-                        >
-                          __
-                        </p>
-                      </div> */}
                     </div>
-
-                    {/* <p style={{ color: "white" }}>
-                      {ItemCounter(item?.id, item?.name, item?.price)}
-                    </p> */}
                   </div>
                 </div>
               </div>

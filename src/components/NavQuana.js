@@ -25,15 +25,6 @@ const NavQuana = () => {
     },
   };
 
-  // const ids = Orders.map((o) => o.id);
-  // let count = 0;
-  // const filtered = Orders.filter(
-  //   ({ id }, index) => !ids.includes(id, index + 1)
-  //   // count = count + 1;
-  // );
-
-  // console.log(filtered);
-
   const answer = Object.values(
     Orders.reduce((p, v) => {
       const old = p[v.id];
@@ -64,6 +55,7 @@ const NavQuana = () => {
       <div
         className="nav"
         style={{ backgroundColor: Dark ? "#282828" : "white" }}
+        // style={{ backgroundColor: "yellow" }}
       >
         <div className="menu" style={{ cursor: "pointer", position: "fixed" }}>
           <Button
@@ -111,15 +103,20 @@ const NavQuana = () => {
           <p
             style={{
               fontFamily: "PlayfairDisplay-Regular",
-              fontSize: "30px",
-              marginLeft: 20,
+              fontSize: "23px",
+              // marginLeft: 20,
               color: Dark ? "white" : "black",
             }}
           >
             {ShopName}
           </p>
         </div>
-        <div className="mode" style={{ cursor: "pointer" }}>
+        <div
+          className="mode"
+          style={{
+            cursor: "pointer",
+          }}
+        >
           <Button
             onClick={() => {
               setDark(!Dark);
@@ -132,7 +129,7 @@ const NavQuana = () => {
                   ? require("../assets/day.png")
                   : require("../assets/night.png")
               }
-              width="90px"
+              width="70px"
               alt="mode"
             />
           </Button>
@@ -186,34 +183,23 @@ const NavQuana = () => {
                   <td>{key + 1}</td>
                   <td>{item.name}</td>
                   <td>
-                    {item?.price}X{item?.count}=
+                    {item?.price}x{item?.count}=
                   </td>
                   <td>{item?.price * item?.count}/-</td>
                 </tr>
               );
             })}
+            <tr className="total">
+              <td>Total</td>
+              <td> </td>
+              <td>Items={Orders.length}</td>
+              <td>{price}/-</td>
+            </tr>
           </table>
         </div>
 
-        {/* {answer.map((item, index) => {
-          return (
-            <div style={{ display: "flex", marginLeft: 10 }}>
-              <p style={{ color: "black" }}>
-                {index + 1}. {item?.name}
-              </p>
-              <p style={{ color: "black", marginLeft: 10 }}>
-                {item?.price}X{item?.count}=
-              </p>
-              <p style={{ color: "black", marginLeft: 10 }}>
-                {item?.price * item?.count}/-
-              </p>
-            </div>
-          );
-        })} */}
         {price !== 0 ? (
-          <p style={{ marginLeft: 110, textDecorationLine: "underline" }}>
-            Total INR {price}/-
-          </p>
+          <p></p>
         ) : (
           <p style={{ marginLeft: 70 }}>Please Add Item from Menu !</p>
         )}
@@ -227,6 +213,7 @@ const NavQuana = () => {
               alignItems: "center",
               justifyContent: "center",
               display: "flex",
+              marginTop: 20,
               // flex: 1,
             }}
             onClick={OrderPlaced}
@@ -242,6 +229,7 @@ const NavQuana = () => {
               alignItems: "center",
               justifyContent: "center",
               display: "flex",
+              marginTop: 20,
               // flex: 1,
             }}
             // onClick={OrderPlaced}

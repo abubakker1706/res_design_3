@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const Values = createContext();
 const ContextTab = ({ children }) => {
-  const [Dark, setDark] = useState(true);
+  const [Dark, setDark] = useState(false);
   const [ShopName, setShopName] = useState("");
   const [Orders, setOrders] = useState([]);
   // const [RestId, setRestId] = useState(null);
