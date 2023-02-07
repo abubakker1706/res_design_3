@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Container } from "@mui/system";
 import "./Content.css";
 
@@ -23,7 +23,7 @@ const NewsContent = () => {
 
   const caller = (index) => {
     setList(menu_type[index]?.list);
-    console.log(menu_type);
+    console.log(menu_type, index);
     setIndex(index);
   };
 
@@ -60,7 +60,7 @@ const NewsContent = () => {
     axios
       .get(`https://www.thequana.com/apimobile/menumaster?r=${id}`)
       .then((Response) => {
-        console.log("Response from server");
+        console.log("Response from server", Response.data?.data);
         // console.log(Response.data?.data[0]?.restaurant[0]?.name);
         // console.log(Response.data?.data?.restaurant[0]?.name);
         setShopName(Response.data?.data?.restaurant[0]?.name);
@@ -70,14 +70,26 @@ const NewsContent = () => {
         // caller(0);
         // setList(menu_type[0]?.list);
         // caller(0);
+        // if (menu_type.length !== 0) {
+        //   console.log("hi");
+        // }
       });
     // .then(() => {
-    //   caller(0);
+    //   addTodo();
     // });
   }, []);
 
+  // const addTodo = useCallback(() => {
+  //   console.log(menu_type);
+  // }, [menu_type]);
+
   useEffect(() => {
-    caller(0);
+    // caller(0);
+    console.log("menu Appred", menu_type);
+    if (menu_type.length !== 0) {
+      console.log("hi");
+      caller(0);
+    }
   }, [menu_type]);
 
   // caller(0);
@@ -173,7 +185,7 @@ const NewsContent = () => {
                   }}
                 >
                   <img
-                    src={`${ImgLink}/${item?.img}`}
+                    src={`${ImgLink}${item?.img}`}
                     alt="content Image"
                     style={{
                       width: 318,

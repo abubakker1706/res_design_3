@@ -13,23 +13,25 @@
 .menu {
   flex: 0.5;
   /* display: flex; */
-  margin-left: 20px;
-  margin-top: 25px;
+  margin-left: 5px;
+  margin-top: 10px;
 }
 
 .topbar {
   height: 71px;
   display: flex;
   align-items: center;
-  margin-left: 120px;
+  margin-left: 80px;
 }
 
-.mode {
+/* .mode {
   flex: 0.5;
   justify-content: flex-end;
   display: flex;
   margin-right: 10px;
-}
+  align-self: center;
+  background-color: red;
+} */
 
 .lang {
   display: flex;

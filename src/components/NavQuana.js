@@ -84,26 +84,13 @@ const NavQuana = () => {
               </p>
             </div>
           </Button>
-          {/* <p
-            style={{
-              color: "white",
-              marginTop: -10,
-              marginLeft: -16,
-              marginBottom: 30,
-              color: "red",
-              fontWeight: "bold",
-              fontSize: 15,
-            }}
-          >
-            Review Orders
-          </p> */}
         </div>
 
         <div style={{ cursor: "pointer" }} className="topbar">
           <p
             style={{
               fontFamily: "PlayfairDisplay-Regular",
-              fontSize: "23px",
+              fontSize: "20px",
               // marginLeft: 20,
               color: Dark ? "white" : "black",
             }}
@@ -115,6 +102,9 @@ const NavQuana = () => {
           className="mode"
           style={{
             cursor: "pointer",
+            display: "flex",
+            flex: 1,
+            // alignSelf: "flex-end",
           }}
         >
           <Button
@@ -129,7 +119,7 @@ const NavQuana = () => {
                   ? require("../assets/day.png")
                   : require("../assets/night.png")
               }
-              width="70px"
+              width="65px"
               alt="mode"
             />
           </Button>
