@@ -398,7 +398,7 @@ const NewsContent = () => {
         position: 'sticky',
         bottom:0,
        
-      marginLeft:"8rem",
+      marginLeft:"9rem",
   
   
 
