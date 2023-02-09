@@ -179,7 +179,8 @@ const NewsContent = () => {
               style={{
                 marginTop: 20,
                 // height: 350,
-                width: 350,
+                width: "100%",
+                maxWidth: "400px",
                 borderColor: "black",
                 backgroundColor: Dark ? "black" : "white",
                 borderRadius: 5,
@@ -199,7 +200,8 @@ const NewsContent = () => {
                     src={`${ImgLink}${item?.img}`}
                     alt="content Image"
                     style={{
-                      width: 318,
+                      width: "100%",
+                      maxWidth: "400px",
                       height: 180,
                       marginTop: 10,
                       marginLeft: -1,
@@ -392,25 +394,30 @@ const NewsContent = () => {
         
       
       { show && <Button onClick={()=>setShow(false)} style={{
-        color:'orange',
+        color: Dark ? "orange":'black',
         fontSize:13,
+        fontWeight:800,
+        height:"30px",
+        width:"300px",
+
       
         position: 'sticky',
         bottom:0,
-       
-      marginLeft:"9rem",
+        display: "flex",
+        margin :"auto",
+  
   
   
 
         
        
-        backgroundColor: Dark? "black" : "white",
+        backgroundColor: Dark? "black" : "orange",
       }}>back</Button>}
       </div>
       <Divider style={{ marginTop: 20 }} />
     
     </div>
   );
-};
+};    
 
 export default NewsContent;
