@@ -106,7 +106,7 @@ const NewsContent = () => {
     flexDirection:"column",
     justifyContent:"center",
     alignItems:"center",
-    height:"80vh"
+    height:"90vh"
     }}>
       {/* <div> */}
      
