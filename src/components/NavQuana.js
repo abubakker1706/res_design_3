@@ -57,7 +57,7 @@ const NavQuana = () => {
         style={{ backgroundColor: Dark ? "#282828" : "white" }}
         // style={{ backgroundColor: "yellow" }}
       >
-        <div className="menu" style={{ cursor: "pointer", position: "fixed" }}>
+        <div className="menu" style={{ cursor: "pointer" }}>
           <Button
             onClick={() => {
               // setDark(!Dark);
@@ -65,7 +65,8 @@ const NavQuana = () => {
             }}
           >
             <img
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer"  }}
+
               src={require("../assets/cart.png")}
               width="50px"
             />

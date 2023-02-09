@@ -10,7 +10,9 @@ import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import Button from "@mui/material/Button";
 import { CompressOutlined } from "@mui/icons-material";
 // import { listClasses } from "@mui/material";
-
+import { FloatingButton, Item } from "react-floating-button";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 const NewsContent = () => {
   const [Index, setIndex] = useState(null);
   const [menu_type, setMenu_type] = useState([]);
@@ -20,9 +22,12 @@ const NewsContent = () => {
   const { Orders, setOrders } = React.useContext(Values);
   const [ImgLink, setImgLink] = useState("");
   const [SpcLink, setSpcLink] = useState("");
+  const [show,setShow] = useState(false);
+
 
   const caller = (index) => {
     setList(menu_type[index]?.list);
+    setShow(!show)
     console.log(menu_type, index);
     setIndex(index);
   };
@@ -83,34 +88,31 @@ const NewsContent = () => {
   //   console.log(menu_type);
   // }, [menu_type]);
 
-  useEffect(() => {
-    // caller(0);
-    console.log("menu Appred", menu_type);
-    if (menu_type.length !== 0) {
-      console.log("hi");
-      caller(0);
-    }
-  }, [menu_type]);
+  // useEffect(() => {
+  //   // caller(0);
+  //   console.log("menu Appred", menu_type);
+  //   if (menu_type.length !== 0) {
+  //     console.log("hi");
+  //     caller(0);
+  //   }
+  // }, [menu_type]);
 
   // caller(0);
   return (
-    <div style={{ backgroundColor: Dark ? "#353535" : "white" }}>
+    <div>
+    {!show && <div style={{ backgroundColor: Dark ? "#353535" : "white" ,
+   
+    display:"flex" ,
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+    height:"80vh"
+    }}>
       {/* <div> */}
-      <Container
-        style={{
-          // marginTop: 20,
-
-          // width: 430,
-          // borderColor: "black",
-          // backgroundColor: Dark ? "black" : "white",
-          // borderRadius: 5,
-          // border: "0.5px solid #888888",
-          // boxShadow: "0px 1px 8px #888888",
-          flex: 1,
-        }}
-      >
-        <ScrollMenu>
+     
+      <div className="wrap-container" >
           {menu_type.map((item, index) => (
+           
             <div
               className="wrap"
               style={{
@@ -119,12 +121,15 @@ const NewsContent = () => {
                 borderBottomColor: Index == index ? "orange" : "#d0d0d0",
                 borderWidth: 10,
                 cursor: "pointer",
+            
+              
               }}
               // onClick={caller(0)}
               onClick={() => {
                 caller(index);
               }}
             >
+           
               <div>
                 <p
                   style={{
@@ -141,9 +146,12 @@ const NewsContent = () => {
               </div>
               {/* <div style={{ width: 5, height: 5, backgroundColor: "red" }}></div> */}
             </div>
+           
           ))}
-        </ScrollMenu>
-      </Container>
+          </div>
+          </div>}
+     
+     
       {/* </div> */}
 
       {List?.length == 0 ? (
@@ -155,14 +163,16 @@ const NewsContent = () => {
             alignItems: "center",
           }}
         >
-          <p style={{ color: "red" }}>Please Select a tab!!</p>
+          {<p style={{ color: "red" }}>Please Select a tab!!</p>}
         </div>
       ) : (
         <div></div>
       )}
 
-      <div>
-        {List.map((item, key) => {
+      <div className="list-container" >
+      
+      <div className="list">
+        {show && List.map((item, key) => {
           return (
             <Container
               // maxWidth="md"
@@ -178,6 +188,7 @@ const NewsContent = () => {
                 flex: 1,
               }}
             >
+             
               <div style={{ display: "flex", flex: 1 }}>
                 <div
                   style={{
@@ -377,8 +388,27 @@ const NewsContent = () => {
             </Container>
           );
         })}
+        </div>
+        
+      
+      { show && <Button onClick={()=>setShow(false)} style={{
+        color:'orange',
+        fontSize:13,
+      
+        position: 'sticky',
+        bottom:0,
+       
+      marginLeft:"8rem",
+  
+  
+
+        
+       
+        backgroundColor: Dark? "black" : "white",
+      }}>back</Button>}
       </div>
       <Divider style={{ marginTop: 20 }} />
+    
     </div>
   );
 };

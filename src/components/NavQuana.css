@@ -1,9 +1,10 @@
 .nav {
-  height: 71px;
+  height: 80px;
   box-shadow: 0px 1px 8px #888888;
   display: flex;
   align-items: center;
-  flex: 1;
+ 
+
   /* background-color: aqua; */
 }
 .logo {
@@ -11,10 +12,9 @@
 }
 
 .menu {
-  flex: 0.5;
-  /* display: flex; */
-  margin-left: 5px;
-  margin-top: 10px;
+
+  
+  flex: 6;
 }
 
 .topbar {
