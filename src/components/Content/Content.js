@@ -148,26 +148,20 @@ const NewsContent = () => {
             </div>
            
           ))}
+          {List?.length == 0 ? (
+        
+        
+        <p style={{ color: "red" , display: "flex",
+          justifyContent: "center",
+          alignItems: "center",}}>Please Select a tab!!</p>
+     
+    ) : "" }
           </div>
           </div>}
      
      
       {/* </div> */}
 
-      {List?.length == 0 ? (
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {<p style={{ color: "red" }}>Please Select a tab!!</p>}
-        </div>
-      ) : (
-        <div></div>
-      )}
 
       <div className="list-container" >
       
