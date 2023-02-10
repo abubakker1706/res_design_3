@@ -1,64 +1,75 @@
-.wrap {
-
-  /* overflow-x: scroll; */
-  /* overflow-y: scroll; */
-
-  height: 30px;
-  min-width: 150px;
-  /* width: 200px; */
-  /* padding: 5px; */
-  /* padding-left: 10; */
-  border-radius: 5px;
-  border-width: 5;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-  display: flex;
-  /* margin: 10px; */
- 
- 
-  flex-wrap: wrap;
-  flex: 1;
-  border-bottom-style: groove;
-  /* border-bottom-color: coral; */
-  border-bottom-width: 7px;
-  width: 10px;
-  /* border-bottom: 5px; */
-  /* border-color: red; */
-}
-
-.flex-container {
-
-  /* flex-direction: row; */
-  display: flex;
-  width: 500;
-  overflow-x: scroll;
-}
-
-/* .contain{
-  overflow-x: scroll;
-
-} */
-.wrap-container{
- 
- 
- 
+.list{
   display: flex;
   flex-direction: column;
+  align-items: "center";
+  justify-content: center;
+ 
+  
+  width: 65%;
+ 
+  margin: 20px;
+  flex-wrap: wrap;
+  
+}
+.wrap-container{
+  display: flex;
+  align-items: center;
+ 
+  flex-wrap: wrap;
+ width: 100%;
+  position: sticky;
+  top: 0;
+  border-radius: "10px";
+ color: aliceblue;
+  
+  background-color: rgb(24, 3, 48);
+ 
+}
+.main{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.listWrap{
+
+ 
+  list-style-type: none;
+  cursor: pointer;
+  color: white;
+ 
+  font-weight: 600;
+  display: flex;
   align-items: center;
   justify-content: center;
- gap: 1rem;
   
 
-}
-.list{
 
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  justify-content: space-around;
- 
-  height: min-content;
+
+margin-left: 3rem;
+
 
 }
+@media only screen and (max-width: 320px) {
+  .listWrap {
+    flex-basis: 100%;
+  }
+}
 
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  .listWrap {
+    flex-basis: 50%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .listWrap {
+    flex-basis: 25%;
+  }
+}
+.shopname{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color:orange;
+  
+}

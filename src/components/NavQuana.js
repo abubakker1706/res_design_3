@@ -54,7 +54,7 @@ const NavQuana = () => {
     <div>
       <div
         className="nav"
-        style={{ backgroundColor: Dark ? "#282828" : "white" }}
+       
         // style={{ backgroundColor: "yellow" }}
       >
         <div className="menu" style={{ cursor: "pointer" }}>
@@ -67,10 +67,10 @@ const NavQuana = () => {
             <img
               style={{ cursor: "pointer"  }}
 
-              src={require("../assets/cart.png")}
+            
               width="50px"
             />
-            <div
+            {/* <div
               style={{
                 height: 20,
                 width: 20,
@@ -83,7 +83,7 @@ const NavQuana = () => {
               <p style={{ marginTop: -1, color: "white", fontWeight: "bold" }}>
                 {Orders.length}
               </p>
-            </div>
+            </div> */}
           </Button>
         </div>
 
@@ -94,6 +94,7 @@ const NavQuana = () => {
               fontSize: "20px",
               // marginLeft: 20,
               color: Dark ? "white" : "black",
+             
             }}
           >
             {ShopName}
@@ -113,7 +114,7 @@ const NavQuana = () => {
               setDark(!Dark);
             }}
           >
-            <img
+            {/* <img
               style={{ cursor: "pointer" }}
               src={
                 !Dark
@@ -122,7 +123,7 @@ const NavQuana = () => {
               }
               width="65px"
               alt="mode"
-            />
+            /> */}
           </Button>
         </div>
       </div>

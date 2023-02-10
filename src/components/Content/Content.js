@@ -8,11 +8,12 @@ import { Values } from "../../Context/ContextTab";
 import ApiCaller from "../../ApiCaller/ApiCaller";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import Button from "@mui/material/Button";
-import { CompressOutlined } from "@mui/icons-material";
+import { CompressOutlined, Margin } from "@mui/icons-material";
 // import { listClasses } from "@mui/material";
 import { FloatingButton, Item } from "react-floating-button";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import Card from "../../Card/Card";
 const NewsContent = () => {
   const [Index, setIndex] = useState(null);
   const [menu_type, setMenu_type] = useState([]);
@@ -22,14 +23,18 @@ const NewsContent = () => {
   const { Orders, setOrders } = React.useContext(Values);
   const [ImgLink, setImgLink] = useState("");
   const [SpcLink, setSpcLink] = useState("");
-  const [show,setShow] = useState(false);
-
+ 
+  const [isVisible, setIsVisible] = useState(true);
+  const [currentListIndex, setCurrentListIndex] = useState(0);
+  
 
   const caller = (index) => {
     setList(menu_type[index]?.list);
-    setShow(!show)
+   
     console.log(menu_type, index);
     setIndex(index);
+    setCurrentListIndex(index);
+  
   };
 
   const OrderReceiver = (id, name, price) => {
@@ -45,7 +50,7 @@ const NewsContent = () => {
     findIndex !== -1 && apps.splice(findIndex, 1);
     setOrders([...apps]);
   };
-
+ 
   // console.log("Orders are", Orders);
 
   const ItemCounter = (id, name, price) => {
@@ -57,7 +62,7 @@ const NewsContent = () => {
     });
     return count;
   };
-
+ 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get("id");
@@ -78,75 +83,60 @@ const NewsContent = () => {
         // if (menu_type.length !== 0) {
         //   console.log("hi");
         // }
+      
       });
     // .then(() => {
     //   addTodo();
     // });
   }, []);
 
+
   // const addTodo = useCallback(() => {
   //   console.log(menu_type);
   // }, [menu_type]);
 
-  // useEffect(() => {
-  //   // caller(0);
-  //   console.log("menu Appred", menu_type);
-  //   if (menu_type.length !== 0) {
-  //     console.log("hi");
-  //     caller(0);
-  //   }
-  // }, [menu_type]);
+  useEffect(() => {
+    // caller(0);
+    console.log("menu Appred", menu_type);
+    if (menu_type.length !== 0) {
+      console.log("hi");
+      caller(0);
+    }
+    
+  }, [menu_type]);
 
-  // caller(0);
+  //caller(0);
+  const handleClick = () => {
+    setIsVisible(!isVisible);
+  }
   return (
-    <div>
-    {!show && <div style={{ backgroundColor: Dark ? "#353535" : "white" ,
-   
-    display:"flex" ,
-    flexDirection:"column",
-    justifyContent:"center",
-    alignItems:"center",
-    height:"90vh"
-    }}>
+    <div className="main">
+    
       {/* <div> */}
+      <div className="shopname">
+      {ShopName}
+      </div>
+      
+      <div className="wrap-container"  >
      
-      <div className="wrap-container" >
           {menu_type.map((item, index) => (
-           
-            <div
-              className="wrap"
-              style={{
-                backgroundColor: "black",
-                textDecorationLine: "underline",
-                borderBottomColor: Index == index ? "orange" : "#d0d0d0",
+        
+           <ul className="listWrap" style={{
+               color: Index == index ? "orange" : "#d0d0d0",
+           }}>
+           <li onClick={()=>{caller(index);handleClick()}} className="itemList" 
+            style={{
+                
+                
+             
                 borderWidth: 10,
                 cursor: "pointer",
             
               
-              }}
-              // onClick={caller(0)}
-              onClick={() => {
-                caller(index);
-              }}
-            >
+              }}> {item?.t}</li>
            
-              <div>
-                <p
-                  style={{
-                    color: Index == index ? "orange" : "#d0d0d0",
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    fontWeight: "bold",
-                    // fontFamily: "Trirong",
-                    fontSize: 17,
-                  }}
-                >
-                  {item?.t}
-                </p>
-              </div>
-              {/* <div style={{ width: 5, height: 5, backgroundColor: "red" }}></div> */}
-            </div>
-           
+           </ul>
+          
           ))}
           {List?.length == 0 ? (
         
@@ -157,59 +147,51 @@ const NewsContent = () => {
      
     ) : "" }
           </div>
-          </div>}
+          
      
      
       {/* </div> */}
 
+     
+    {<div style={{
+         
+          display:"flex",
+           alignItems:"center",
+           justifyContent:"center",
+           flexDirection:"column",
+       
+          margin:"0px"
 
-      <div className="list-container" >
-      
-      <div className="list">
-        {show && List.map((item, key) => {
+        }}>
+     
+      <div className="list"  style={{}}  >
+        {List.map((item, key) => {
           return (
-            <Container
-              // maxWidth="md"
-              style={{
-                marginTop: 20,
-                // height: 350,
-                width: "100%",
-                maxWidth: "400px",
-                borderColor: "black",
-                backgroundColor: Dark ? "black" : "white",
-                borderRadius: 5,
-                border: "0.5px solid #888888",
-                boxShadow: "0px 1px 8px #888888",
-                flex: 1,
-              }}
-            >
+          
              
-              <div style={{ display: "flex", flex: 1 }}>
-                <div
-                  style={{
-                    flex: 1,
-                  }}
-                >
+        <React.Fragment key={item}>
+              <div className="all-list">
+                <div style={{display:"flex", alignItems:"flex-start",justifyContent:"flex-start"}}>
                   <img
                     src={`${ImgLink}${item?.img}`}
                     alt="content Image"
                     style={{
-                      width: "100%",
-                      maxWidth: "400px",
+                      width: "230px",
+                      
                       height: 180,
-                      marginTop: 10,
-                      marginLeft: -1,
-                      marginBottom: 5,
+                    
+                      
+    
+                     
+                      
+
+                      
+                      
                     }}
                   />
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      flex: 1,
-                      // backgroundColor: "pink",
-                    }}
-                  >
+                  </div>
+                  <div style={{display:"flex", alignItems:"flex-start",justifyContent:"flex-start",flexDirection:"column"}}>
+                    <div style={{display:"flex",alignItems:"center" ,gap:"0.5rem"}}>
                     <div
                       className="veg"
                       style={{
@@ -221,46 +203,45 @@ const NewsContent = () => {
                     />
                     <p
                       style={{
-                        fontSize: 25,
+                        fontSize: 18,
                         color: Dark ? "#E2E4E6" : "black",
-                        marginLeft: 8,
-                        marginTop: -2,
+                    
+
                         fontFamily: "Inter",
                       }}
                     >
                       {item?.name}
                     </p>
-                    <div
-                      style={{
-                        display: "flex",
-                        // justifyContent: "flex-end",
-                        position: "absolute",
-                        marginLeft: 290,
-                        // right: 1,
-                      }}
-                    >
-                      <img
+                    
+                    </div>
+                     
+                   
+                    <div >
+                  <p
+                    style={{
+                      color: Dark ? "#c9c8c4" : "#808080",
+                      // marginLeft: 10,
+                      display:"flex",
+                      fontSize:18
+                    
+                    }}
+                  >
+                    {item?.description}{" "}
+                    <img
                         src={`${SpcLink}/spiceid${item?.spiceid}.png`}
                         style={{
                           width: 30,
                           height: 30,
                           // marginLeft: 150,
-                          alignItems: "flex-end",
+                          
                         }}
                       />
-                    </div>
-                  </div>
-                  <p
-                    style={{
-                      color: Dark ? "#c9c8c4" : "#808080",
-                      // marginLeft: 10,
-                      marginTop: -10,
-                    }}
-                  >
-                    {item?.description}{" "}
                     {/* {ItemCounter(item?.id, item?.name, item?.price)} */}
                   </p>
-                  <div style={{ display: "flex" }}>
+                  </div>
+                  
+                  
+                
                     {/* <p
                       style={{
                         color: Dark ? "white" : "black",
@@ -269,98 +250,55 @@ const NewsContent = () => {
                     >
                       {item?.ingredients}
                     </p> */}
+                    <div style={{display:"flex" ,alignItems:"center",gap:".5rem"}}>
                     <p
                       style={{
                         color: "grey",
                         fontWeight: "bold",
-                        marginLeft: -10,
-                        display: "flex",
+                        
+                     
                       }}
-                    >
+                    >  </p>
                       INR{" "}
                       <p
                         style={{
-                          marginTop: -0.5,
-                          marginLeft: 2,
+                          
                           color: "#f17728",
+                          fontWeight: "bold",
                         }}
                       >
                         {item?.price}/-
                       </p>
-                    </p>
-
-                    <div style={{ marginLeft: 160, display: "flex" }}>
+                      </div>
+</div>
+                      {/* <div style={{display: "flex", alignItems: "center", marginTop: 10}}>
                       <div
-                        style={{
-                          height: 20,
-                          width: 30,
-                          backgroundColor: "grey",
-                          borderRadius: 5,
-                          marginTop: 15,
-
-                          cursor: "pointer",
-                        }}
+                       
                         onClick={() => {
                           OrderReducer(item?.id, item?.name, item?.price);
                         }}
+                        style={{
+        height: 20,
+        width: 20,
+        backgroundColor: "grey",
+        borderRadius: 5,
+        marginRight: 10,
+        cursor: "pointer",
+      }}
                       >
                         <p
                           style={{
-                            marginTop: -0.5,
-                            color: "white",
-                            fontWeight: "bold",
-                            textTransform: "none",
-                            marginLeft: 10,
+                            color: "white", fontWeight: "bold"
                           }}
                         >
                           -
                         </p>
                       </div>
-                      <div
-                        style={{
-                          height: 20,
-                          marginLeft: 5,
-                          marginRight: 5,
-                          // width: 80,
-                          backgroundColor:
-                            ItemCounter(item?.id, item?.name, item?.price) !== 0
-                              ? "green"
-                              : "grey",
-                          borderRadius: 5,
-                          marginTop: 15,
+                      </div> */}
+                    
 
-                          cursor: "pointer",
-                        }}
-                        onClick={() => {
-                          OrderReceiver(item?.id, item?.name, item?.price);
-                        }}
-                      >
-                        {/* <p style={{ color: "white" }}>-</p> */}
-                        <p
-                          style={{
-                            marginTop: -0.5,
-                            color: "white",
-                            fontWeight: "bold",
-                            textTransform: "none",
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            // marginLeft: 5,
-                          }}
-                        >
-                          {ItemCounter(item?.id, item?.name, item?.price)}
-                        </p>
-                      </div>
-
-                      <div
-                        style={{
-                          height: 20,
-                          width: 30,
-                          backgroundColor: "grey",
-                          borderRadius: 5,
-                          marginTop: 15,
-
-                          cursor: "pointer",
-                        }}
+                      {/* <div
+                        
                         onClick={() => {
                           OrderReceiver(item?.id, item?.name, item?.price);
                         }}
@@ -376,18 +314,36 @@ const NewsContent = () => {
                         >
                           +
                         </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </div> */}
+                   
+              
+                      <hr style={{width:"100%"}}/>
               </div>
-            </Container>
+              
+              
+      
+              </React.Fragment>
+             
+          
           );
-        })}
+        
+        }
+      
+        )
+        
+        }
+        
+       
         </div>
         
+    
+       
+     
+       
+    
+        
       
-      { show && <Button onClick={()=>setShow(false)} style={{
+      {/* { show && <Button onClick={()=>setShow(false)} style={{
         color: Dark ? "orange":'black',
         fontSize:13,
         fontWeight:800,
@@ -406,8 +362,10 @@ const NewsContent = () => {
         
        
         backgroundColor: Dark? "black" : "orange",
-      }}>back</Button>}
-      </div>
+      }}>back</Button>} */}
+      </div>}
+     
+      
       <Divider style={{ marginTop: 20 }} />
     
     </div>
@@ -415,3 +373,65 @@ const NewsContent = () => {
 };    
 
 export default NewsContent;
+
+// {/* <div style={{display: "flex",  alignItems: "center",justifyContent:"center" ,gap:"1rem"}}>
+// <p
+//     style={{
+//       color: "orange", fontWeight: "bold",
+//       cursor: "pointer"
+//     }}
+     
+//   onClick={() => {
+//     OrderReducer(item?.id, item?.name, item?.price);
+//   }}
+//   >
+//     -
+//   </p>
+// <div
+//   style={{
+//     height: 20,
+   
+//     // width: 80,
+//     backgroundColor:
+//       ItemCounter(item?.id, item?.name, item?.price) !== 0
+//         ? "green"
+//         : "grey",
+   
+//     cursor: "pointer",
+//   }}
+//   onClick={() => {
+//     OrderReceiver(item?.id, item?.name, item?.price);
+//   }}
+// >
+//   {/* <p style={{ color: "white" }}>-</p> */}
+//   <p
+//     style={{
+//       marginTop: -0.5,
+//       color: "white",
+//       fontWeight: "bold",
+//       textTransform: "none",
+//       paddingLeft: 5,
+//       paddingRight: 5,
+//       // marginLeft: 5,
+//     }}
+//   >
+//     {ItemCounter(item?.id, item?.name, item?.price)}
+//   </p>
+  
+// </div>
+// <p
+//     style={{
+      
+//       color: "orange",
+//       fontWeight: "bold",
+//       cursor: "pointer"
+     
+//     }}
+//     onClick={() => {
+//     OrderReceiver(item?.id, item?.name, item?.price);
+//   }}
+//   >
+//     +
+//   </p>
+// </div>
+//  */}

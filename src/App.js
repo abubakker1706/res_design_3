@@ -8,7 +8,7 @@ import NewsContent from "./components/Content/Content";
 function App() {
   return (
     <div className="App">
-      <NavQuana />
+    
       <NewsContent />
       {/* <Footer /> */}
     </div>
