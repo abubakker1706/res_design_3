@@ -171,7 +171,7 @@ const NewsContent = () => {
              
         <React.Fragment key={item}>
               <div className="all-list">
-                <div style={{display:"flex", alignItems:"flex-start",justifyContent:"flex-start"}}>
+                {/* <div style={{display:"flex", alignItems:"flex-start",justifyContent:"flex-start"}}>
                   <img
                     src={`${ImgLink}${item?.img}`}
                     alt="content Image"
@@ -189,7 +189,7 @@ const NewsContent = () => {
                       
                     }}
                   />
-                  </div>
+                  </div> */}
                   <div style={{display:"flex", alignItems:"flex-start",justifyContent:"flex-start",flexDirection:"column"}}>
                     <div style={{display:"flex",alignItems:"center" ,gap:"0.5rem"}}>
                     <div
